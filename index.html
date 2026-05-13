@@ -3,10 +3,24 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Workspace · 통합 대시보드</title>
+
+<!-- PWA: 앱 모드 -->
+<meta name="theme-color" content="#0a0d12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Workspace">
+<meta name="application-name" content="Workspace">
+<meta name="format-detection" content="telephone=no">
+
+<!-- 파비콘 -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237c8cff'/%3E%3Cstop offset='50%25' stop-color='%23b67cff'/%3E%3Cstop offset='100%25' stop-color='%23ff7cae'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='7' fill='%230a0d12'/%3E%3Crect x='6' y='6' width='8.5' height='8.5' rx='2' fill='url(%23g)'/%3E%3Crect x='17.5' y='6' width='8.5' height='8.5' rx='2' fill='url(%23g)' opacity='0.75'/%3E%3Crect x='6' y='17.5' width='8.5' height='8.5' rx='2' fill='url(%23g)' opacity='0.55'/%3E%3Crect x='17.5' y='17.5' width='8.5' height='8.5' rx='2' fill='url(%23g)'/%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237c8cff'/%3E%3Cstop offset='50%25' stop-color='%23b67cff'/%3E%3Cstop offset='100%25' stop-color='%23ff7cae'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='7' fill='%230a0d12'/%3E%3Crect x='6' y='6' width='8.5' height='8.5' rx='2' fill='url(%23g)'/%3E%3Crect x='17.5' y='6' width='8.5' height='8.5' rx='2' fill='url(%23g)' opacity='0.75'/%3E%3Crect x='6' y='17.5' width='8.5' height='8.5' rx='2' fill='url(%23g)' opacity='0.55'/%3E%3Crect x='17.5' y='17.5' width='8.5' height='8.5' rx='2' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237c8cff'/%3E%3Cstop offset='50%25' stop-color='%23b67cff'/%3E%3Cstop offset='100%25' stop-color='%23ff7cae'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='%230a0d12'/%3E%3Crect x='34' y='34' width='48' height='48' rx='11' fill='url(%23g)'/%3E%3Crect x='98' y='34' width='48' height='48' rx='11' fill='url(%23g)' opacity='0.75'/%3E%3Crect x='34' y='98' width='48' height='48' rx='11' fill='url(%23g)' opacity='0.55'/%3E%3Crect x='98' y='98' width='48' height='48' rx='11' fill='url(%23g)'/%3E%3C/svg%3E">
+
+<!-- PWA Manifest (인라인) -->
+<link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Workspace%20%C2%B7%20%ED%86%B5%ED%95%A9%20%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C%22%2C%22short_name%22%3A%22Workspace%22%2C%22description%22%3A%22%ED%86%B5%ED%95%A9%20%EC%97%85%EB%AC%B4%20%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C%22%2C%22start_url%22%3A%22.%22%2C%22scope%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22any%22%2C%22background_color%22%3A%22%230a0d12%22%2C%22theme_color%22%3A%22%230a0d12%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D%2527http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2527%2520viewBox%253D%25270%25200%2520512%2520512%2527%253E%253Cdefs%253E%253ClinearGradient%2520id%253D%2527g%2527%2520x1%253D%25270%2525%2527%2520y1%253D%25270%2525%2527%2520x2%253D%2527100%2525%2527%2520y2%253D%2527100%2525%2527%253E%253Cstop%2520offset%253D%25270%2525%2527%2520stop-color%253D%2527%25237c8cff%2527%252F%253E%253Cstop%2520offset%253D%252750%2525%2527%2520stop-color%253D%2527%2523b67cff%2527%252F%253E%253Cstop%2520offset%253D%2527100%2525%2527%2520stop-color%253D%2527%2523ff7cae%2527%252F%253E%253C%252FlinearGradient%253E%253C%252Fdefs%253E%253Crect%2520width%253D%2527512%2527%2520height%253D%2527512%2527%2520rx%253D%2527112%2527%2520fill%253D%2527%25230a0d12%2527%252F%253E%253Crect%2520x%253D%252796%2527%2520y%253D%252796%2527%2520width%253D%2527136%2527%2520height%253D%2527136%2527%2520rx%253D%252732%2527%2520fill%253D%2527url(%2523g)%2527%252F%253E%253Crect%2520x%253D%2527280%2527%2520y%253D%252796%2527%2520width%253D%2527136%2527%2520height%253D%2527136%2527%2520rx%253D%252732%2527%2520fill%253D%2527url(%2523g)%2527%2520opacity%253D%25270.75%2527%252F%253E%253Crect%2520x%253D%252796%2527%2520y%253D%2527280%2527%2520width%253D%2527136%2527%2520height%253D%2527136%2527%2520rx%253D%252732%2527%2520fill%253D%2527url(%2523g)%2527%2520opacity%253D%25270.55%2527%252F%253E%253Crect%2520x%253D%2527280%2527%2520y%253D%2527280%2527%2520width%253D%2527136%2527%2520height%253D%2527136%2527%2520rx%253D%252732%2527%2520fill%253D%2527url(%2523g)%2527%252F%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -32,6 +46,13 @@
   html, body {
     height: 100%;
     overflow: hidden;
+    /* iOS 100vh 버그 회피 */
+    height: -webkit-fill-available;
+    /* 모바일 더블탭 줌 방지 */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    /* 모바일 풀스크린에서 안전영역 보장 */
+    overscroll-behavior: none;
   }
   body {
     font-family: 'Inter', -apple-system, 'Pretendard', sans-serif;
@@ -39,7 +60,12 @@
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     font-size: 14px;
-    position: relative;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    /* 동적 뷰포트 높이 (모바일 주소창 변화 대응) */
+    height: 100vh;
+    height: 100dvh;
   }
 
   /* ===== 배경 광원 효과 ===== */
@@ -66,9 +92,30 @@
   /* ===== 레이아웃 ===== */
   .app {
     display: flex;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     position: relative;
     z-index: 1;
+    /* iOS 안전영역 (노치) */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* ===== 사이드바 백드롭 (모바일 외부 클릭용) ===== */
+  .sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .sidebar-backdrop.show {
+    display: block;
+    opacity: 1;
   }
 
   /* ===== 사이드바 ===== */
@@ -396,6 +443,7 @@
     position: relative;
     overflow: hidden;
     background: #fff;
+    -webkit-overflow-scrolling: touch;
   }
   .app-frame {
     position: absolute;
@@ -406,6 +454,8 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s ease;
+    /* 모바일 iframe 스크롤 */
+    -webkit-overflow-scrolling: touch;
   }
   .app-frame.active {
     opacity: 1;
@@ -535,6 +585,50 @@
     color: var(--text-muted);
   }
 
+  /* PWA 설치 안내 */
+  .install-banner {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .install-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: 30px;
+    background: var(--gradient);
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 8px 24px var(--accent-glow);
+    transition: all 0.2s ease;
+  }
+  .install-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px var(--accent-glow);
+  }
+  .install-btn:active { transform: translateY(0); }
+  .install-btn svg { width: 14px; height: 14px; }
+  .install-hint {
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .install-hint code {
+    background: var(--bg-elev);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'SF Mono', Menlo, monospace;
+    color: var(--text-secondary);
+    font-size: 10px;
+  }
+
   /* ===== 로딩 ===== */
   .loader {
     position: absolute;
@@ -583,18 +677,77 @@
   @media (max-width: 768px) {
     .sidebar {
       position: fixed;
-      left: 0; top: 0; bottom: 0;
+      left: 0; top: 0;
+      bottom: 0;
+      height: 100%;
+      width: 280px !important;
+      max-width: 85vw;
       z-index: 100;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
+      transform: translateX(-105%);
+      transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+      padding-top: calc(24px + env(safe-area-inset-top));
+      padding-bottom: calc(24px + env(safe-area-inset-bottom));
+      /* 데스크탑 collapsed 무효화 */
+      padding-left: 16px !important;
+      padding-right: 16px !important;
     }
+    .sidebar.collapsed {
+      width: 280px !important;
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    .sidebar.collapsed .brand-text,
+    .sidebar.collapsed .nav-label,
+    .sidebar.collapsed .nav-item-text,
+    .sidebar.collapsed .nav-item-shortcut,
+    .sidebar.collapsed .footer-info {
+      display: revert;
+    }
+    .sidebar.collapsed .brand { justify-content: flex-start; }
+    .sidebar.collapsed .nav-item { justify-content: flex-start; padding: 11px 12px; }
+
     .sidebar.mobile-open {
       transform: translateX(0);
+      box-shadow: 8px 0 40px rgba(0,0,0,0.5);
     }
-    .welcome-time { font-size: 44px; }
-    .welcome-grid { grid-template-columns: 1fr; }
+
+    /* 모바일 단축키 숨김 */
+    .nav-item-shortcut { display: none; }
+
+    /* 상단바 */
+    .topbar {
+      height: 52px;
+      padding: 0 12px;
+      padding-top: env(safe-area-inset-top);
+      height: calc(52px + env(safe-area-inset-top));
+    }
     .topbar-breadcrumb { display: none; }
     .clock { display: none; }
+
+    /* 시작화면 */
+    .welcome-time { font-size: 44px; }
+    .welcome-date { letter-spacing: 2px; font-size: 11px; }
+    .welcome-greeting { font-size: 17px; }
+    .welcome-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .welcome-card { padding: 14px; }
+    .welcome-inner { padding: 24px 20px; }
+
+    /* 풋터 */
+    .footer-info { padding: 12px; }
+  }
+
+  @media (max-width: 480px) {
+    .welcome-time { font-size: 38px; }
+    .welcome-grid { grid-template-columns: 1fr; }
+  }
+
+  /* PWA standalone 모드 (홈화면 앱 실행) */
+  @media (display-mode: standalone) {
+    body { background: #0a0d12; }
+    .topbar {
+      padding-top: env(safe-area-inset-top);
+      height: calc(56px + env(safe-area-inset-top));
+    }
   }
 
   /* 스크롤바 */
@@ -607,6 +760,9 @@
 <body>
 
 <div class="app">
+
+  <!-- 모바일 사이드바 백드롭 -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeMobileSidebar()"></div>
 
   <!-- 사이드바 -->
   <aside class="sidebar" id="sidebar">
@@ -674,6 +830,13 @@
           <div class="welcome-sub">왼쪽에서 앱을 선택하거나 아래에서 시작하세요</div>
           <div class="welcome-grid" id="welcomeGrid">
             <!-- JS로 렌더링 -->
+          </div>
+          <div class="install-banner" id="installBanner" style="display:none;">
+            <button class="install-btn" id="installBtn" onclick="installPWA()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              앱으로 설치
+            </button>
+            <div class="install-hint" id="installHint"></div>
           </div>
         </div>
       </div>
@@ -803,6 +966,11 @@ function openApp(id) {
   document.getElementById('topbarCurrent').textContent = app.name;
   document.getElementById('footerActive').textContent = app.name;
   document.title = `${app.name} · Workspace`;
+
+  // 모바일에서는 사이드바 자동 닫기
+  if (window.innerWidth <= 768) {
+    closeMobileSidebar();
+  }
 }
 
 function goHome() {
@@ -845,13 +1013,109 @@ function openCurrentInNewTab() {
 /* ===== 사이드바 토글 ===== */
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebarBackdrop');
   if (window.innerWidth <= 768) {
-    sidebar.classList.toggle('mobile-open');
+    const isOpen = sidebar.classList.toggle('mobile-open');
+    backdrop.classList.toggle('show', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   } else {
     sidebar.classList.toggle('collapsed');
     localStorage.setItem('workspace_sidebar_collapsed', sidebar.classList.contains('collapsed') ? '1' : '0');
   }
 }
+
+function closeMobileSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebarBackdrop');
+  sidebar.classList.remove('mobile-open');
+  backdrop.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+/* ===== PWA 설치 ===== */
+let deferredInstallPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  showInstallBanner();
+});
+
+window.addEventListener('appinstalled', () => {
+  hideInstallBanner();
+  deferredInstallPrompt = null;
+  showToast('홈 화면에 설치되었습니다');
+});
+
+function isStandalone() {
+  return window.matchMedia('(display-mode: standalone)').matches ||
+         window.navigator.standalone === true;
+}
+
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
+function isAndroid() {
+  return /Android/.test(navigator.userAgent);
+}
+
+function showInstallBanner() {
+  const banner = document.getElementById('installBanner');
+  const hint = document.getElementById('installHint');
+  const btn = document.getElementById('installBtn');
+  if (!banner) return;
+  if (isStandalone()) { banner.style.display = 'none'; return; }
+
+  banner.style.display = 'block';
+
+  if (deferredInstallPrompt) {
+    // Chrome/Edge/안드로이드 - 자동 설치 가능
+    btn.style.display = 'inline-flex';
+    hint.innerHTML = '한 번의 탭으로 홈 화면에 추가됩니다';
+  } else if (isIOS()) {
+    // iOS Safari - 수동 안내만 가능
+    btn.style.display = 'none';
+    hint.innerHTML = `📱 <strong>iPhone/iPad 설치 방법</strong><br>
+      Safari 하단의 <code>공유 ⬆️</code> 버튼 → <code>홈 화면에 추가</code> 선택`;
+  } else if (isAndroid()) {
+    // 안드로이드인데 prompt 못받은 경우
+    btn.style.display = 'none';
+    hint.innerHTML = `📱 <strong>Android 설치 방법</strong><br>
+      Chrome 우상단 <code>⋮</code> 메뉴 → <code>앱 설치</code> 또는 <code>홈 화면에 추가</code>`;
+  } else {
+    // 데스크탑 안내
+    btn.style.display = 'none';
+    hint.innerHTML = `💻 <strong>데스크탑 설치 방법</strong><br>
+      Chrome/Edge 주소창 우측 <code>설치 아이콘</code> 클릭`;
+  }
+}
+
+function hideInstallBanner() {
+  const banner = document.getElementById('installBanner');
+  if (banner) banner.style.display = 'none';
+}
+
+async function installPWA() {
+  if (!deferredInstallPrompt) {
+    showToast('설치 기능을 사용할 수 없습니다');
+    return;
+  }
+  deferredInstallPrompt.prompt();
+  const { outcome } = await deferredInstallPrompt.userChoice;
+  if (outcome === 'accepted') {
+    showToast('설치 중...');
+  }
+  deferredInstallPrompt = null;
+}
+
+// 페이지 로드 시 설치 안내 표시 (Chrome이 prompt를 안 줘도)
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    if (!isStandalone() && !deferredInstallPrompt) {
+      showInstallBanner();
+    }
+  }, 1500);
+});
 
 /* ===== 로더 ===== */
 function showLoader() { document.getElementById('loader').classList.add('show'); }
@@ -927,6 +1191,18 @@ if (lastApp && APPS.find(a => a.id === lastApp)) {
   setTimeout(() => {
     if (!currentAppId) openApp(lastApp);
   }, 500);
+}
+
+// 화면 회전/리사이즈 시 사이드바 상태 정리
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) {
+    closeMobileSidebar();
+  }
+});
+
+// 모바일에서 풀스크린(PWA) 상태에서 새로고침 시 상단바 자동 보정
+if (isStandalone()) {
+  document.documentElement.classList.add('pwa-standalone');
 }
 </script>
 

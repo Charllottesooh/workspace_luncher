@@ -1,0 +1,932 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workspace · 통합 대시보드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-base: #0a0d12;
+    --bg-deep: #060810;
+    --bg-elev: rgba(22, 27, 38, 0.55);
+    --bg-elev-strong: rgba(28, 34, 48, 0.85);
+    --border: rgba(255, 255, 255, 0.06);
+    --border-strong: rgba(255, 255, 255, 0.12);
+    --text-primary: #f0f3f9;
+    --text-secondary: #8a93a6;
+    --text-muted: #555c6e;
+    --accent: #7c8cff;
+    --accent-glow: rgba(124, 140, 255, 0.35);
+    --accent-soft: rgba(124, 140, 255, 0.12);
+    --gradient: linear-gradient(135deg, #7c8cff 0%, #b67cff 50%, #ff7cae 100%);
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    font-family: 'Inter', -apple-system, 'Pretendard', sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    position: relative;
+  }
+
+  /* ===== 배경 광원 효과 ===== */
+  body::before, body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::before {
+    top: -200px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, #7c8cff 0%, transparent 70%);
+  }
+  body::after {
+    bottom: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, #ff7cae 0%, transparent 70%);
+  }
+
+  /* ===== 레이아웃 ===== */
+  .app {
+    display: flex;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== 사이드바 ===== */
+  .sidebar {
+    width: 260px;
+    background: var(--bg-elev);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    flex-shrink: 0;
+    transition: width 0.3s ease;
+  }
+
+  .sidebar.collapsed {
+    width: 76px;
+    padding: 24px 12px;
+  }
+  .sidebar.collapsed .brand-text,
+  .sidebar.collapsed .nav-label,
+  .sidebar.collapsed .nav-item-text,
+  .sidebar.collapsed .nav-item-shortcut,
+  .sidebar.collapsed .footer-info {
+    display: none;
+  }
+  .sidebar.collapsed .brand {
+    justify-content: center;
+  }
+  .sidebar.collapsed .nav-item {
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px 24px 8px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .brand-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 8px 24px var(--accent-glow);
+    position: relative;
+    overflow: hidden;
+  }
+  .brand-logo::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+  }
+  .brand-logo svg {
+    position: relative;
+    z-index: 1;
+    width: 18px;
+    height: 18px;
+    color: #fff;
+  }
+  .brand-text {
+    flex: 1;
+    overflow: hidden;
+  }
+  .brand-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+    line-height: 1;
+  }
+  .brand-text p {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .nav-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    padding: 0 12px;
+    margin-bottom: 10px;
+    margin-top: 8px;
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+  }
+  .nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 2px; height: 100%;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .nav-item:hover {
+    background: rgba(255,255,255,0.03);
+    color: var(--text-primary);
+  }
+  .nav-item.active {
+    background: var(--accent-soft);
+    color: var(--text-primary);
+    border-color: rgba(124, 140, 255, 0.2);
+  }
+  .nav-item.active::before {
+    opacity: 1;
+  }
+  .nav-item-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+    background: rgba(255,255,255,0.04);
+    transition: all 0.2s ease;
+  }
+  .nav-item.active .nav-item-icon {
+    background: var(--accent-soft);
+    box-shadow: 0 0 20px rgba(124,140,255,0.2);
+  }
+  .nav-item-text {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.1px;
+  }
+  .nav-item-shortcut {
+    font-size: 10px;
+    color: var(--text-muted);
+    padding: 3px 7px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.04);
+    font-family: 'SF Mono', Menlo, monospace;
+    border: 1px solid var(--border);
+  }
+  .nav-item.active .nav-item-shortcut {
+    background: rgba(124,140,255,0.15);
+    color: var(--text-primary);
+    border-color: rgba(124,140,255,0.25);
+  }
+
+  .footer-info {
+    padding: 16px 12px;
+    border-top: 1px solid var(--border);
+    margin-top: 16px;
+  }
+  .footer-info .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .footer-info .row:last-child { margin-bottom: 0; }
+  .footer-info .value {
+    color: var(--text-secondary);
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 11px;
+  }
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00d97e;
+    display: inline-block;
+    margin-right: 6px;
+    box-shadow: 0 0 8px #00d97e;
+    animation: live-pulse 2s infinite;
+  }
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ===== 메인 영역 ===== */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg-deep);
+  }
+
+  .topbar {
+    height: 56px;
+    background: var(--bg-elev);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    flex-shrink: 0;
+    gap: 16px;
+  }
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  .menu-toggle:hover {
+    color: var(--text-primary);
+    background: rgba(255,255,255,0.03);
+    border-color: var(--border-strong);
+  }
+  .menu-toggle svg { width: 16px; height: 16px; }
+
+  .topbar-title {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .topbar-breadcrumb {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  .topbar-current {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .topbar-current::before {
+    content: '';
+    width: 1px;
+    height: 14px;
+    background: var(--border-strong);
+  }
+
+  .topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  .icon-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255,255,255,0.03);
+    border-color: var(--border-strong);
+  }
+  .icon-btn svg { width: 15px; height: 15px; }
+
+  .clock {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+    padding: 0 12px;
+    border-left: 1px solid var(--border);
+    margin-left: 4px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ===== iframe 컨테이너 ===== */
+  .frame-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+  }
+  .app-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .app-frame.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* ===== 시작 화면 ===== */
+  .welcome {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    z-index: 5;
+    transition: opacity 0.3s ease;
+  }
+  .welcome.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .welcome-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,140,255,0.15) 0%, transparent 70%);
+    filter: blur(60px);
+    z-index: 0;
+  }
+  .welcome-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 480px;
+    padding: 40px;
+  }
+  .welcome-time {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+  .welcome-date {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    font-weight: 500;
+  }
+  .welcome-greeting {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+  .welcome-greeting strong {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+  }
+  .welcome-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+  }
+  .welcome-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .welcome-card {
+    background: var(--bg-elev);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+  .welcome-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    transition: left 0.6s ease;
+  }
+  .welcome-card:hover::after { left: 100%; }
+  .welcome-card:hover {
+    border-color: rgba(124,140,255,0.3);
+    transform: translateY(-2px);
+    background: rgba(28, 34, 48, 0.7);
+  }
+  .welcome-card-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .welcome-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .welcome-card-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* ===== 로딩 ===== */
+  .loader {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-deep);
+    z-index: 4;
+  }
+  .loader.show { display: flex; }
+  .loader-ring {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ===== 토스트 ===== */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--bg-elev-strong);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 12px;
+    opacity: 0;
+    transition: all 0.25s ease;
+    z-index: 1000;
+    pointer-events: none;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ===== 반응형 ===== */
+  @media (max-width: 768px) {
+    .sidebar {
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      z-index: 100;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    .sidebar.mobile-open {
+      transform: translateX(0);
+    }
+    .welcome-time { font-size: 44px; }
+    .welcome-grid { grid-template-columns: 1fr; }
+    .topbar-breadcrumb { display: none; }
+    .clock { display: none; }
+  }
+
+  /* 스크롤바 */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- 사이드바 -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand" onclick="goHome()">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/>
+          <rect x="14" y="3" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>Workspace</h1>
+        <p>Unified Console</p>
+      </div>
+    </div>
+
+    <div class="nav-label">Applications</div>
+    <nav class="nav-list" id="navList">
+      <!-- JS로 렌더링 -->
+    </nav>
+
+    <div class="footer-info">
+      <div class="row">
+        <span><span class="live-dot"></span>Online</span>
+        <span class="value" id="footerTime">--:--</span>
+      </div>
+      <div class="row">
+        <span>Active</span>
+        <span class="value" id="footerActive">Home</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 메인 -->
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-toggle" onclick="toggleSidebar()" title="사이드바 토글">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="topbar-title">
+        <span class="topbar-breadcrumb">Workspace</span>
+        <span class="topbar-current" id="topbarCurrent">Home</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" onclick="reloadCurrent()" title="현재 앱 새로고침 (R)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+        </button>
+        <button class="icon-btn" onclick="openCurrentInNewTab()" title="새 탭에서 열기">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </button>
+        <div class="clock" id="topClock">--:--:--</div>
+      </div>
+    </div>
+
+    <div class="frame-container" id="frameContainer">
+      <!-- 시작 화면 -->
+      <div class="welcome" id="welcome">
+        <div class="welcome-glow"></div>
+        <div class="welcome-inner">
+          <div class="welcome-time" id="welcomeTime">00:00</div>
+          <div class="welcome-date" id="welcomeDate">—</div>
+          <div class="welcome-greeting">Welcome back, <strong>Charllott</strong></div>
+          <div class="welcome-sub">왼쪽에서 앱을 선택하거나 아래에서 시작하세요</div>
+          <div class="welcome-grid" id="welcomeGrid">
+            <!-- JS로 렌더링 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 로더 -->
+      <div class="loader" id="loader"><div class="loader-ring"></div></div>
+
+      <!-- iframe들 (lazy) -->
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const APPS = [
+  {
+    id: 'daily-report',
+    name: '일일보고',
+    sub: '시재 관리',
+    icon: '📊',
+    color: '#7c8cff',
+    url: 'https://charllottesooh.github.io/Daily-account-report/',
+    shortcut: '1'
+  },
+  {
+    id: 'purchase',
+    name: '일일결제',
+    sub: '매입 현황',
+    icon: '💳',
+    color: '#34d399',
+    url: 'https://charllottesooh.github.io/my-erp/',
+    shortcut: '2'
+  },
+  {
+    id: 'franchise',
+    name: '가맹점 변동',
+    sub: '신규/명변/폐점',
+    icon: '🏪',
+    color: '#fbbf24',
+    url: 'https://charllottesooh.github.io/franchise-manager/',
+    shortcut: '3'
+  },
+  {
+    id: 'production',
+    name: '제품생산 ERP',
+    sub: '원재료 · 생산 · 출하',
+    icon: '🏭',
+    color: '#f472b6',
+    url: 'https://charllottesooh.github.io/production_erp/',
+    shortcut: '4'
+  }
+];
+
+const LAST_APP_KEY = 'workspace_last_app';
+let currentAppId = null;
+const loadedApps = new Set();
+
+/* ===== 사이드바 렌더링 ===== */
+function renderNav() {
+  const list = document.getElementById('navList');
+  list.innerHTML = APPS.map(app => `
+    <div class="nav-item" data-id="${app.id}" onclick="openApp('${app.id}')">
+      <div class="nav-item-icon">${app.icon}</div>
+      <div class="nav-item-text">${app.name}</div>
+      <div class="nav-item-shortcut">⌥${app.shortcut}</div>
+    </div>
+  `).join('');
+}
+
+/* ===== 시작 화면 카드 ===== */
+function renderWelcomeGrid() {
+  const grid = document.getElementById('welcomeGrid');
+  grid.innerHTML = APPS.map(app => `
+    <div class="welcome-card" onclick="openApp('${app.id}')">
+      <div class="welcome-card-icon">${app.icon}</div>
+      <div class="welcome-card-title">${app.name}</div>
+      <div class="welcome-card-sub">${app.sub}</div>
+    </div>
+  `).join('');
+}
+
+/* ===== 앱 열기 ===== */
+function openApp(id) {
+  const app = APPS.find(a => a.id === id);
+  if (!app) return;
+
+  // 시작 화면 숨기기
+  document.getElementById('welcome').classList.add('hidden');
+
+  // 사이드바 활성 표시
+  document.querySelectorAll('.nav-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.id === id);
+  });
+
+  // 모든 iframe 비활성화
+  document.querySelectorAll('.app-frame').forEach(f => f.classList.remove('active'));
+
+  // 해당 iframe 처리
+  let frame = document.getElementById('frame-' + id);
+  if (!frame) {
+    // 최초 로드: iframe 생성
+    showLoader();
+    frame = document.createElement('iframe');
+    frame.id = 'frame-' + id;
+    frame.className = 'app-frame';
+    frame.src = app.url;
+    frame.referrerPolicy = 'no-referrer-when-downgrade';
+    frame.allow = 'clipboard-read; clipboard-write; geolocation; camera; microphone';
+    frame.onload = () => {
+      hideLoader();
+      frame.classList.add('active');
+      loadedApps.add(id);
+    };
+    frame.onerror = () => {
+      hideLoader();
+      showToast('앱 로딩 실패: ' + app.name);
+    };
+    document.getElementById('frameContainer').appendChild(frame);
+  } else {
+    // 이미 로드됨: 그냥 활성화
+    frame.classList.add('active');
+  }
+
+  currentAppId = id;
+  localStorage.setItem(LAST_APP_KEY, id);
+  document.getElementById('topbarCurrent').textContent = app.name;
+  document.getElementById('footerActive').textContent = app.name;
+  document.title = `${app.name} · Workspace`;
+}
+
+function goHome() {
+  document.getElementById('welcome').classList.remove('hidden');
+  document.querySelectorAll('.app-frame').forEach(f => f.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  currentAppId = null;
+  document.getElementById('topbarCurrent').textContent = 'Home';
+  document.getElementById('footerActive').textContent = 'Home';
+  document.title = 'Workspace · 통합 대시보드';
+  localStorage.removeItem(LAST_APP_KEY);
+}
+
+function reloadCurrent() {
+  if (!currentAppId) {
+    showToast('현재 활성 앱이 없습니다');
+    return;
+  }
+  const frame = document.getElementById('frame-' + currentAppId);
+  if (frame) {
+    const app = APPS.find(a => a.id === currentAppId);
+    showLoader();
+    frame.src = app.url;
+    frame.onload = () => {
+      hideLoader();
+      showToast('새로고침 완료');
+    };
+  }
+}
+
+function openCurrentInNewTab() {
+  if (!currentAppId) {
+    showToast('현재 활성 앱이 없습니다');
+    return;
+  }
+  const app = APPS.find(a => a.id === currentAppId);
+  window.open(app.url, '_blank');
+}
+
+/* ===== 사이드바 토글 ===== */
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  if (window.innerWidth <= 768) {
+    sidebar.classList.toggle('mobile-open');
+  } else {
+    sidebar.classList.toggle('collapsed');
+    localStorage.setItem('workspace_sidebar_collapsed', sidebar.classList.contains('collapsed') ? '1' : '0');
+  }
+}
+
+/* ===== 로더 ===== */
+function showLoader() { document.getElementById('loader').classList.add('show'); }
+function hideLoader() { document.getElementById('loader').classList.remove('show'); }
+
+/* ===== 토스트 ===== */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ===== 시계 ===== */
+function updateClock() {
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2, '0');
+  const mm = String(now.getMinutes()).padStart(2, '0');
+  const ss = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById('topClock').textContent = `${hh}:${mm}:${ss}`;
+  document.getElementById('footerTime').textContent = `${hh}:${mm}`;
+  document.getElementById('welcomeTime').textContent = `${hh}:${mm}`;
+
+  const days = ['일','월','화','수','목','금','토'];
+  const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  const dateStr = `${months[now.getMonth()]} ${String(now.getDate()).padStart(2,'0')}  ·  ${now.getFullYear()}  ·  ${days[now.getDay()]}요일`;
+  document.getElementById('welcomeDate').textContent = dateStr;
+}
+
+/* ===== 키보드 단축키 ===== */
+document.addEventListener('keydown', (e) => {
+  // Alt + 1~4: 앱 전환
+  if (e.altKey && !e.ctrlKey && !e.metaKey) {
+    const num = parseInt(e.key);
+    if (num >= 1 && num <= APPS.length) {
+      e.preventDefault();
+      openApp(APPS[num-1].id);
+    }
+  }
+  // Alt + H: 홈
+  if (e.altKey && (e.key === 'h' || e.key === 'H')) {
+    e.preventDefault();
+    goHome();
+  }
+  // Alt + R: 현재 앱 새로고침
+  if (e.altKey && (e.key === 'r' || e.key === 'R')) {
+    e.preventDefault();
+    reloadCurrent();
+  }
+  // Alt + B: 사이드바 토글
+  if (e.altKey && (e.key === 'b' || e.key === 'B')) {
+    e.preventDefault();
+    toggleSidebar();
+  }
+});
+
+/* ===== 초기화 ===== */
+renderNav();
+renderWelcomeGrid();
+updateClock();
+setInterval(updateClock, 1000);
+
+// 사이드바 접힘 상태 복원
+if (localStorage.getItem('workspace_sidebar_collapsed') === '1' && window.innerWidth > 768) {
+  document.getElementById('sidebar').classList.add('collapsed');
+}
+
+// 마지막 사용 앱 자동 복원 (선택사항 — 1초 후)
+const lastApp = localStorage.getItem(LAST_APP_KEY);
+if (lastApp && APPS.find(a => a.id === lastApp)) {
+  setTimeout(() => {
+    if (!currentAppId) openApp(lastApp);
+  }, 500);
+}
+</script>
+
+</body>
+</html>

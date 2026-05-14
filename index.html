@@ -3,10 +3,10 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Workspace · 통합 대시보드</title>
 
-<!-- PWA: 앱 모드 -->
+<!-- PWA -->
 <meta name="theme-color" content="#0a0d12">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -19,11 +19,10 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237c8cff'/%3E%3Cstop offset='50%25' stop-color='%23b67cff'/%3E%3Cstop offset='100%25' stop-color='%23ff7cae'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='7' fill='%230a0d12'/%3E%3Crect x='6' y='6' width='8.5' height='8.5' rx='2' fill='url(%23g)'/%3E%3Crect x='17.5' y='6' width='8.5' height='8.5' rx='2' fill='url(%23g)' opacity='0.75'/%3E%3Crect x='6' y='17.5' width='8.5' height='8.5' rx='2' fill='url(%23g)' opacity='0.55'/%3E%3Crect x='17.5' y='17.5' width='8.5' height='8.5' rx='2' fill='url(%23g)'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237c8cff'/%3E%3Cstop offset='50%25' stop-color='%23b67cff'/%3E%3Cstop offset='100%25' stop-color='%23ff7cae'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='%230a0d12'/%3E%3Crect x='34' y='34' width='48' height='48' rx='11' fill='url(%23g)'/%3E%3Crect x='98' y='34' width='48' height='48' rx='11' fill='url(%23g)' opacity='0.75'/%3E%3Crect x='34' y='98' width='48' height='48' rx='11' fill='url(%23g)' opacity='0.55'/%3E%3Crect x='98' y='98' width='48' height='48' rx='11' fill='url(%23g)'/%3E%3C/svg%3E">
 
-<!-- PWA Manifest (인라인) -->
-<link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Workspace%20%C2%B7%20%ED%86%B5%ED%95%A9%20%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C%22%2C%22short_name%22%3A%22Workspace%22%2C%22description%22%3A%22%ED%86%B5%ED%95%A9%20%EC%97%85%EB%AC%B4%20%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C%22%2C%22start_url%22%3A%22.%22%2C%22scope%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22any%22%2C%22background_color%22%3A%22%230a0d12%22%2C%22theme_color%22%3A%22%230a0d12%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D%2527http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2527%2520viewBox%253D%25270%25200%2520512%2520512%2527%253E%253Cdefs%253E%253ClinearGradient%2520id%253D%2527g%2527%2520x1%253D%25270%2525%2527%2520y1%253D%25270%2525%2527%2520x2%253D%2527100%2525%2527%2520y2%253D%2527100%2525%2527%253E%253Cstop%2520offset%253D%25270%2525%2527%2520stop-color%253D%2527%25237c8cff%2527%252F%253E%253Cstop%2520offset%253D%252750%2525%2527%2520stop-color%253D%2527%2523b67cff%2527%252F%253E%253Cstop%2520offset%253D%2527100%2525%2527%2520stop-color%253D%2527%2523ff7cae%2527%252F%253E%253C%252FlinearGradient%253E%253C%252Fdefs%253E%253Crect%2520width%253D%2527512%2527%2520height%253D%2527512%2527%2520rx%253D%2527112%2527%2520fill%253D%2527%25230a0d12%2527%252F%253E%253Crect%2520x%253D%252796%2527%2520y%253D%252796%2527%2520width%253D%2527136%2527%2520height%253D%2527136%2527%2520rx%253D%252732%2527%2520fill%253D%2527url(%2523g)%2527%252F%253E%253Crect%2520x%253D%2527280%2527%2520y%253D%252796%2527%2520width%253D%2527136%2527%2520height%253D%2527136%2527%2520rx%253D%252732%2527%2520fill%253D%2527url(%2523g)%2527%2520opacity%253D%25270.75%2527%252F%253E%253Crect%2520x%253D%252796%2527%2520y%253D%2527280%2527%2520width%253D%2527136%2527%2520height%253D%2527136%2527%2520rx%253D%252732%2527%2520fill%253D%2527url(%2523g)%2527%2520opacity%253D%25270.55%2527%252F%253E%253Crect%2520x%253D%2527280%2527%2520y%253D%2527280%2527%2520width%253D%2527136%2527%2520height%253D%2527136%2527%2520rx%253D%252732%2527%2520fill%253D%2527url(%2523g)%2527%252F%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -45,14 +44,9 @@
 
   html, body {
     height: 100%;
-    overflow: hidden;
-    /* iOS 100vh 버그 회피 */
     height: -webkit-fill-available;
-    /* 모바일 더블탭 줌 방지 */
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
-    /* 모바일 풀스크린에서 안전영역 보장 */
-    overscroll-behavior: none;
   }
   body {
     font-family: 'Inter', -apple-system, 'Pretendard', sans-serif;
@@ -60,15 +54,14 @@
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     font-size: 14px;
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    /* 동적 뷰포트 높이 (모바일 주소창 변화 대응) */
-    height: 100vh;
-    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    position: relative;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
-  /* ===== 배경 광원 효과 ===== */
   body::before, body::after {
     content: '';
     position: fixed;
@@ -89,87 +82,37 @@
     background: radial-gradient(circle, #ff7cae 0%, transparent 70%);
   }
 
-  /* ===== 레이아웃 ===== */
-  .app {
-    display: flex;
-    height: 100%;
-    width: 100%;
+  .container {
     position: relative;
     z-index: 1;
-    /* iOS 안전영역 (노치) */
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-
-  /* ===== 사이드바 백드롭 (모바일 외부 클릭용) ===== */
-  .sidebar-backdrop {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    z-index: 99;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
-  .sidebar-backdrop.show {
-    display: block;
-    opacity: 1;
-  }
-
-  /* ===== 사이드바 ===== */
-  .sidebar {
-    width: 260px;
-    background: var(--bg-elev);
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border-right: 1px solid var(--border);
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    padding: 24px 16px;
-    flex-shrink: 0;
-    transition: width 0.3s ease;
   }
 
-  .sidebar.collapsed {
-    width: 76px;
-    padding: 24px 12px;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
   }
-  .sidebar.collapsed .brand-text,
-  .sidebar.collapsed .nav-label,
-  .sidebar.collapsed .nav-item-text,
-  .sidebar.collapsed .nav-item-shortcut,
-  .sidebar.collapsed .footer-info {
-    display: none;
-  }
-  .sidebar.collapsed .brand {
-    justify-content: center;
-  }
-  .sidebar.collapsed .nav-item {
-    justify-content: center;
-    padding: 12px;
-  }
-
   .brand {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 0 8px 24px 8px;
-    margin-bottom: 16px;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
+    gap: 14px;
   }
   .brand-logo {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
     background: var(--gradient);
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 8px 24px var(--accent-glow);
+    box-shadow: 0 10px 30px var(--accent-glow);
     position: relative;
     overflow: hidden;
   }
@@ -177,25 +120,20 @@
     content: '';
     position: absolute;
     inset: 1px;
-    border-radius: 9px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%);
   }
   .brand-logo svg {
     position: relative;
     z-index: 1;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     color: #fff;
-  }
-  .brand-text {
-    flex: 1;
-    overflow: hidden;
   }
   .brand-text h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 19px;
+    font-size: 22px;
     font-weight: 700;
-    color: var(--text-primary);
     letter-spacing: -0.3px;
     line-height: 1;
   }
@@ -203,122 +141,206 @@
     font-size: 10px;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-top: 4px;
+    letter-spacing: 2px;
+    margin-top: 5px;
     font-weight: 500;
   }
-
-  .nav-label {
+  .header-status {
+    text-align: right;
+  }
+  .header-status .clock {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .header-status .date {
     font-size: 10px;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
+    margin-top: 3px;
+  }
+
+  .time-display {
+    text-align: center;
+    margin: 24px 0 48px;
+  }
+  .time-display .big-time {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
     font-weight: 600;
-    padding: 0 12px;
-    margin-bottom: 10px;
-    margin-top: 8px;
+    letter-spacing: -3px;
+    line-height: 1;
+    background: linear-gradient(180deg, #fff 0%, #8a93a6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-
-  .nav-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    flex: 1;
-  }
-
-  .nav-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 11px 12px;
-    border-radius: 10px;
-    cursor: pointer;
+  .time-display .big-date {
+    font-size: 12px;
     color: var(--text-secondary);
-    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-top: 12px;
+    font-weight: 500;
+  }
+  .greeting {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .greeting-text {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+  }
+  .greeting-text strong {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+  }
+  .greeting-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    padding-left: 4px;
+  }
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+  .app-card {
+    background: var(--bg-elev);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 20px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.32, 0.72, 0, 1);
     position: relative;
     overflow: hidden;
-    border: 1px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    min-height: 130px;
   }
-  .nav-item::before {
+  .app-card::before {
     content: '';
     position: absolute;
-    left: 0; top: 0;
-    width: 2px; height: 100%;
-    background: var(--gradient);
-    opacity: 0;
-    transition: opacity 0.2s ease;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.04) 100%);
+    pointer-events: none;
   }
-  .nav-item:hover {
-    background: rgba(255,255,255,0.03);
-    color: var(--text-primary);
+  .app-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    transition: left 0.6s ease;
+    pointer-events: none;
   }
-  .nav-item.active {
+  .app-card:active {
+    transform: scale(0.97);
+    border-color: rgba(124,140,255,0.4);
+  }
+  .app-card:hover {
+    border-color: rgba(124,140,255,0.25);
+    background: rgba(28, 34, 48, 0.75);
+    transform: translateY(-2px);
+  }
+  .app-card:hover::after { left: 100%; }
+  .app-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
     background: var(--accent-soft);
-    color: var(--text-primary);
-    border-color: rgba(124, 140, 255, 0.2);
-  }
-  .nav-item.active::before {
-    opacity: 1;
-  }
-  .nav-item-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    font-size: 16px;
-    background: rgba(255,255,255,0.04);
-    transition: all 0.2s ease;
+    font-size: 22px;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
   }
-  .nav-item.active .nav-item-icon {
-    background: var(--accent-soft);
-    box-shadow: 0 0 20px rgba(124,140,255,0.2);
+  .app-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: -0.2px;
+    position: relative;
+    z-index: 1;
   }
-  .nav-item-text {
-    flex: 1;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: -0.1px;
-  }
-  .nav-item-shortcut {
-    font-size: 10px;
+  .app-card-sub {
+    font-size: 11px;
     color: var(--text-muted);
-    padding: 3px 7px;
-    border-radius: 4px;
-    background: rgba(255,255,255,0.04);
-    font-family: 'SF Mono', Menlo, monospace;
-    border: 1px solid var(--border);
+    letter-spacing: 0.2px;
+    position: relative;
+    z-index: 1;
   }
-  .nav-item.active .nav-item-shortcut {
-    background: rgba(124,140,255,0.15);
-    color: var(--text-primary);
-    border-color: rgba(124,140,255,0.25);
+  .app-card-arrow {
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: all 0.25s ease;
+    z-index: 1;
   }
+  .app-card:hover .app-card-arrow {
+    opacity: 1;
+    color: var(--accent);
+    transform: translateX(2px);
+  }
+  .app-card-arrow svg { width: 16px; height: 16px; }
 
-  .footer-info {
-    padding: 16px 12px;
+  .footer {
+    margin-top: auto;
+    padding-top: 32px;
     border-top: 1px solid var(--border);
-    margin-top: 16px;
-  }
-  .footer-info .row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 11px;
     color: var(--text-muted);
-    margin-bottom: 6px;
   }
-  .footer-info .row:last-child { margin-bottom: 0; }
-  .footer-info .value {
+  .footer-actions { display: flex; gap: 8px; }
+  .footer-btn {
+    background: transparent;
+    border: 1px solid var(--border);
     color: var(--text-secondary);
-    font-family: 'SF Mono', Menlo, monospace;
+    padding: 8px 14px;
+    border-radius: 8px;
     font-size: 11px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
+  .footer-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255,255,255,0.03);
+    border-color: var(--border-strong);
+  }
+  .footer-btn svg { width: 12px; height: 12px; }
   .live-dot {
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     background: #00d97e;
     display: inline-block;
@@ -331,479 +353,82 @@
     50% { opacity: 0.4; }
   }
 
-  /* ===== 메인 영역 ===== */
-  .main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background: var(--bg-deep);
-  }
-
-  .topbar {
-    height: 56px;
-    background: var(--bg-elev);
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    padding: 0 24px;
-    flex-shrink: 0;
-    gap: 16px;
-  }
-  .menu-toggle {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-  }
-  .menu-toggle:hover {
-    color: var(--text-primary);
-    background: rgba(255,255,255,0.03);
-    border-color: var(--border-strong);
-  }
-  .menu-toggle svg { width: 16px; height: 16px; }
-
-  .topbar-title {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .topbar-breadcrumb {
-    font-size: 12px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-  }
-  .topbar-current {
-    font-size: 14px;
-    color: var(--text-primary);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .topbar-current::before {
-    content: '';
-    width: 1px;
-    height: 14px;
-    background: var(--border-strong);
-  }
-
-  .topbar-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .icon-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-  }
-  .icon-btn:hover {
-    color: var(--text-primary);
-    background: rgba(255,255,255,0.03);
-    border-color: var(--border-strong);
-  }
-  .icon-btn svg { width: 15px; height: 15px; }
-
-  .clock {
-    font-family: 'SF Mono', Menlo, monospace;
-    font-size: 12px;
-    color: var(--text-secondary);
-    padding: 0 12px;
-    border-left: 1px solid var(--border);
-    margin-left: 4px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-  }
-
-  /* ===== iframe 컨테이너 ===== */
-  .frame-container {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    background: #fff;
-    -webkit-overflow-scrolling: touch;
-  }
-  .app-frame {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-    /* 모바일 iframe 스크롤 */
-    -webkit-overflow-scrolling: touch;
-  }
-  .app-frame.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* ===== 데스크탑 보기 모드 (모바일에서 강제 데스크탑 너비) ===== */
-  .frame-container.desktop-mode {
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  /* 비활성 iframe은 데스크탑 모드에서도 완전히 숨김 (공간 차지 방지) */
-  .frame-container.desktop-mode .app-frame {
-    display: none;
-  }
-  .frame-container.desktop-mode .app-frame.active {
-    display: block;
-    position: relative;
-    width: 1280px;
-    height: calc(100dvh / var(--frame-scale, 1));
-    transform-origin: top left;
-    transform: scale(var(--frame-scale, 1));
-    inset: auto;
-  }
-  /* 폴백: dvh 미지원 브라우저 */
-  @supports not (height: 100dvh) {
-    .frame-container.desktop-mode .app-frame.active {
-      height: calc(100vh / var(--frame-scale, 1));
-    }
-  }
-  /* 데스크탑 모드 활성화 시 토글 버튼 강조 */
-  .desktop-mode-btn.active {
-    background: var(--accent-soft) !important;
-    border-color: rgba(124, 140, 255, 0.4) !important;
-    color: var(--accent) !important;
-    box-shadow: 0 0 12px rgba(124, 140, 255, 0.25);
-  }
-  /* 데스크탑 모드 버튼은 모바일에서만 표시 */
-  .desktop-mode-btn { display: none; }
-  @media (max-width: 768px) {
-    .desktop-mode-btn { display: flex; }
-  }
-
-  /* ===== 시작 화면 ===== */
-  .welcome {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-deep);
-    color: var(--text-primary);
-    z-index: 5;
-    transition: opacity 0.3s ease;
-  }
-  .welcome.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .welcome-glow {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(124,140,255,0.15) 0%, transparent 70%);
-    filter: blur(60px);
-    z-index: 0;
-  }
-  .welcome-inner {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    max-width: 480px;
-    padding: 40px;
-  }
-  .welcome-time {
-    font-family: 'Playfair Display', serif;
-    font-size: 64px;
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: -2px;
-    margin-bottom: 8px;
-    line-height: 1;
-  }
-  .welcome-date {
-    font-size: 13px;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 40px;
-    font-weight: 500;
-  }
-  .welcome-greeting {
-    font-size: 20px;
-    font-weight: 300;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-    letter-spacing: -0.3px;
-  }
-  .welcome-greeting strong {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 700;
-  }
-  .welcome-sub {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 32px;
-  }
-  .welcome-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 24px;
-  }
-  .welcome-card {
+  .install-banner {
     background: var(--bg-elev);
     backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 18px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-  }
-  .welcome-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-    transition: left 0.6s ease;
-  }
-  .welcome-card:hover::after { left: 100%; }
-  .welcome-card:hover {
-    border-color: rgba(124,140,255,0.3);
-    transform: translateY(-2px);
-    background: rgba(28, 34, 48, 0.7);
-  }
-  .welcome-card-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: var(--accent-soft);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-  .welcome-card-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 2px;
-  }
-  .welcome-card-sub {
-    font-size: 11px;
-    color: var(--text-muted);
-  }
-
-  /* PWA 설치 안내 */
-  .install-banner {
-    margin-top: 28px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
+    padding: 16px 18px;
+    margin-bottom: 28px;
+    display: none;
     text-align: center;
   }
+  .install-banner.show { display: block; }
   .install-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 11px 22px;
-    border-radius: 30px;
+    padding: 10px 20px;
+    border-radius: 24px;
     background: var(--gradient);
     border: none;
     color: #fff;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
     font-family: inherit;
-    box-shadow: 0 8px 24px var(--accent-glow);
-    transition: all 0.2s ease;
+    box-shadow: 0 6px 20px var(--accent-glow);
+    margin-top: 10px;
   }
-  .install-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px var(--accent-glow);
-  }
-  .install-btn:active { transform: translateY(0); }
-  .install-btn svg { width: 14px; height: 14px; }
+  .install-btn svg { width: 12px; height: 12px; }
   .install-hint {
-    margin-top: 12px;
     font-size: 11px;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     line-height: 1.6;
   }
   .install-hint code {
-    background: var(--bg-elev);
+    background: var(--bg-elev-strong);
     padding: 2px 6px;
     border-radius: 4px;
     font-family: 'SF Mono', Menlo, monospace;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     font-size: 10px;
   }
 
-  /* ===== 로딩 ===== */
-  .loader {
-    position: absolute;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-deep);
-    z-index: 4;
-  }
-  .loader.show { display: flex; }
-  .loader-ring {
-    width: 32px;
-    height: 32px;
-    border: 2px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* ===== 토스트 ===== */
-  .toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: var(--bg-elev-strong);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border-strong);
-    color: var(--text-primary);
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-size: 12px;
-    opacity: 0;
-    transition: all 0.25s ease;
-    z-index: 1000;
-    pointer-events: none;
-  }
-  .toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+  @media (max-width: 640px) {
+    .container { padding: 28px 18px 36px; }
+    .header { margin-bottom: 24px; }
+    .brand-text h1 { font-size: 18px; }
+    .brand-text p { font-size: 9px; letter-spacing: 1.5px; }
+    .header-status .clock { font-size: 12px; }
+    .header-status .date { font-size: 9px; }
+    .time-display { margin: 12px 0 32px; }
+    .time-display .big-time { font-size: 56px; }
+    .time-display .big-date { font-size: 10px; letter-spacing: 3px; }
+    .greeting-text { font-size: 16px; }
+    .greeting-sub { font-size: 11px; }
+    .greeting { margin-bottom: 28px; }
+    .app-grid { gap: 10px; }
+    .app-card { padding: 18px 16px; min-height: 110px; border-radius: 14px; }
+    .app-card-icon { width: 38px; height: 38px; font-size: 19px; margin-bottom: 12px; border-radius: 10px; }
+    .app-card-title { font-size: 13px; }
+    .app-card-sub { font-size: 10px; }
+    .app-card-arrow { display: none; }
+    .footer { flex-direction: column; gap: 14px; padding-top: 24px; }
+    .footer-actions { width: 100%; justify-content: center; }
   }
 
-  /* ===== 반응형 ===== */
-  @media (max-width: 768px) {
-    .sidebar {
-      position: fixed;
-      left: 0; top: 0;
-      bottom: 0;
-      height: 100%;
-      width: 280px !important;
-      max-width: 85vw;
-      z-index: 100;
-      transform: translateX(-105%);
-      transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-      padding-top: calc(24px + env(safe-area-inset-top));
-      padding-bottom: calc(24px + env(safe-area-inset-bottom));
-      /* 데스크탑 collapsed 무효화 */
-      padding-left: 16px !important;
-      padding-right: 16px !important;
-    }
-    .sidebar.collapsed {
-      width: 280px !important;
-      padding-left: 16px !important;
-      padding-right: 16px !important;
-    }
-    .sidebar.collapsed .brand-text,
-    .sidebar.collapsed .nav-label,
-    .sidebar.collapsed .nav-item-text,
-    .sidebar.collapsed .nav-item-shortcut,
-    .sidebar.collapsed .footer-info {
-      display: revert;
-    }
-    .sidebar.collapsed .brand { justify-content: flex-start; }
-    .sidebar.collapsed .nav-item { justify-content: flex-start; padding: 11px 12px; }
-
-    .sidebar.mobile-open {
-      transform: translateX(0);
-      box-shadow: 8px 0 40px rgba(0,0,0,0.5);
-    }
-
-    /* 모바일 단축키 숨김 */
-    .nav-item-shortcut { display: none; }
-
-    /* 상단바 */
-    .topbar {
-      height: 52px;
-      padding: 0 12px;
-      padding-top: env(safe-area-inset-top);
-      height: calc(52px + env(safe-area-inset-top));
-    }
-    .topbar-breadcrumb { display: none; }
-    .clock { display: none; }
-
-    /* 시작화면 */
-    .welcome-time { font-size: 44px; }
-    .welcome-date { letter-spacing: 2px; font-size: 11px; }
-    .welcome-greeting { font-size: 17px; }
-    .welcome-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .welcome-card { padding: 14px; }
-    .welcome-inner { padding: 24px 20px; }
-
-    /* 풋터 */
-    .footer-info { padding: 12px; }
+  @media (max-width: 380px) {
+    .app-grid { grid-template-columns: 1fr; }
   }
-
-  @media (max-width: 480px) {
-    .welcome-time { font-size: 38px; }
-    .welcome-grid { grid-template-columns: 1fr; }
-  }
-
-  /* PWA standalone 모드 (홈화면 앱 실행) */
-  @media (display-mode: standalone) {
-    body { background: #0a0d12; }
-    .topbar {
-      padding-top: env(safe-area-inset-top);
-      height: calc(56px + env(safe-area-inset-top));
-    }
-  }
-
-  /* 스크롤바 */
-  ::-webkit-scrollbar { width: 8px; height: 8px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 </style>
 </head>
 <body>
 
-<div class="app">
+<div class="container">
 
-  <!-- 모바일 사이드바 백드롭 -->
-  <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeMobileSidebar()"></div>
-
-  <!-- 사이드바 -->
-  <aside class="sidebar" id="sidebar">
-    <div class="brand" onclick="goHome()">
+  <header class="header">
+    <div class="brand">
       <div class="brand-logo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="3" width="7" height="7"/>
@@ -817,509 +442,148 @@
         <p>Unified Console</p>
       </div>
     </div>
-
-    <div class="nav-label">Applications</div>
-    <nav class="nav-list" id="navList">
-      <!-- JS로 렌더링 -->
-    </nav>
-
-    <div class="footer-info">
-      <div class="row">
-        <span><span class="live-dot"></span>Online</span>
-        <span class="value" id="footerTime">--:--</span>
-      </div>
-      <div class="row">
-        <span>Active</span>
-        <span class="value" id="footerActive">Home</span>
-      </div>
+    <div class="header-status">
+      <div class="clock" id="clock">--:--</div>
+      <div class="date" id="date">—</div>
     </div>
-  </aside>
+  </header>
 
-  <!-- 메인 -->
-  <main class="main">
-    <div class="topbar">
-      <button class="menu-toggle" onclick="toggleSidebar()" title="사이드바 토글">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  <div class="time-display">
+    <div class="big-time" id="bigTime">00:00</div>
+    <div class="big-date" id="bigDate">—</div>
+  </div>
+
+  <div class="greeting">
+    <div class="greeting-text">Welcome back, <strong>Charllott</strong></div>
+    <div class="greeting-sub" id="greetingSub">오늘도 좋은 하루 되세요</div>
+  </div>
+
+  <div class="install-banner" id="installBanner">
+    <div class="install-hint" id="installHint"></div>
+    <button class="install-btn" id="installBtn" onclick="installPWA()" style="display:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      홈 화면에 앱으로 설치
+    </button>
+  </div>
+
+  <div class="section-label">Applications</div>
+  <div class="app-grid" id="appGrid"></div>
+
+  <footer class="footer">
+    <div><span class="live-dot"></span>Online · Workspace v2</div>
+    <div class="footer-actions">
+      <button class="footer-btn" onclick="window.location.reload()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+        새로고침
       </button>
-      <div class="topbar-title">
-        <span class="topbar-breadcrumb">Workspace</span>
-        <span class="topbar-current" id="topbarCurrent">Home</span>
-      </div>
-      <div class="topbar-actions">
-        <button class="icon-btn desktop-mode-btn" id="desktopModeBtn" onclick="toggleDesktopMode()" title="데스크탑 보기 (모바일 전용)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </button>
-        <button class="icon-btn" onclick="reloadCurrent()" title="현재 앱 새로고침">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
-        </button>
-        <button class="icon-btn" onclick="openCurrentInNewTab()" title="새 탭에서 열기">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </button>
-        <div class="clock" id="topClock">--:--:--</div>
-      </div>
     </div>
-
-    <div class="frame-container" id="frameContainer">
-      <!-- 시작 화면 -->
-      <div class="welcome" id="welcome">
-        <div class="welcome-glow"></div>
-        <div class="welcome-inner">
-          <div class="welcome-time" id="welcomeTime">00:00</div>
-          <div class="welcome-date" id="welcomeDate">—</div>
-          <div class="welcome-greeting">Welcome back, <strong>Charllott</strong></div>
-          <div class="welcome-sub">왼쪽에서 앱을 선택하거나 아래에서 시작하세요</div>
-          <div class="welcome-grid" id="welcomeGrid">
-            <!-- JS로 렌더링 -->
-          </div>
-          <div class="install-banner" id="installBanner" style="display:none;">
-            <button class="install-btn" id="installBtn" onclick="installPWA()">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-              앱으로 설치
-            </button>
-            <div class="install-hint" id="installHint"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 로더 -->
-      <div class="loader" id="loader"><div class="loader-ring"></div></div>
-
-      <!-- iframe들 (lazy) -->
-    </div>
-  </main>
+  </footer>
 </div>
-
-<div class="toast" id="toast"></div>
 
 <script>
 const APPS = [
-  {
-    id: 'daily-report',
-    name: '일일보고',
-    sub: '시재 관리',
-    icon: '📊',
-    color: '#7c8cff',
-    url: 'https://charllottesooh.github.io/Daily-account-report/',
-    shortcut: '1'
-  },
-  {
-    id: 'purchase',
-    name: '일일결제',
-    sub: '매입 현황',
-    icon: '💳',
-    color: '#34d399',
-    url: 'https://charllottesooh.github.io/my-erp/',
-    shortcut: '2'
-  },
-  {
-    id: 'franchise',
-    name: '가맹점 변동',
-    sub: '신규/명변/폐점',
-    icon: '🏪',
-    color: '#fbbf24',
-    url: 'https://charllottesooh.github.io/franchise-manager/',
-    shortcut: '3'
-  },
-  {
-    id: 'production',
-    name: '제품생산 ERP',
-    sub: '원재료 · 생산 · 출하',
-    icon: '🏭',
-    color: '#f472b6',
-    url: 'https://charllottesooh.github.io/production_erp/',
-    shortcut: '4'
-  }
+  { id: 'daily-report', name: '일일보고', sub: '시재 관리', icon: '📊', url: 'https://charllottesooh.github.io/Daily-account-report/' },
+  { id: 'purchase', name: '일일결제', sub: '매입 현황', icon: '💳', url: 'https://charllottesooh.github.io/my-erp/' },
+  { id: 'franchise', name: '가맹점 변동', sub: '신규 · 명변 · 폐점', icon: '🏪', url: 'https://charllottesooh.github.io/franchise-manager/' },
+  { id: 'production', name: '제품생산 ERP', sub: '원재료 · 생산 · 출하', icon: '🏭', url: 'https://charllottesooh.github.io/production_erp/' }
 ];
 
-const LAST_APP_KEY = 'workspace_last_app';
-let currentAppId = null;
-const loadedApps = new Set();
-
-/* ===== 사이드바 렌더링 ===== */
-function renderNav() {
-  const list = document.getElementById('navList');
-  list.innerHTML = APPS.map(app => `
-    <div class="nav-item" data-id="${app.id}" onclick="openApp('${app.id}')">
-      <div class="nav-item-icon">${app.icon}</div>
-      <div class="nav-item-text">${app.name}</div>
-      <div class="nav-item-shortcut">⌥${app.shortcut}</div>
-    </div>
-  `).join('');
-}
-
-/* ===== 시작 화면 카드 ===== */
-function renderWelcomeGrid() {
-  const grid = document.getElementById('welcomeGrid');
+function renderApps() {
+  const grid = document.getElementById('appGrid');
   grid.innerHTML = APPS.map(app => `
-    <div class="welcome-card" onclick="openApp('${app.id}')">
-      <div class="welcome-card-icon">${app.icon}</div>
-      <div class="welcome-card-title">${app.name}</div>
-      <div class="welcome-card-sub">${app.sub}</div>
-    </div>
+    <a class="app-card" href="${app.url}" onclick="trackOpen('${app.id}')">
+      <div class="app-card-icon">${app.icon}</div>
+      <div class="app-card-title">${app.name}</div>
+      <div class="app-card-sub">${app.sub}</div>
+      <div class="app-card-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </a>
   `).join('');
 }
 
-/* ===== 앱 열기 ===== */
-function openApp(id) {
-  const app = APPS.find(a => a.id === id);
-  if (!app) return;
-
-  // 시작 화면 숨기기
-  document.getElementById('welcome').classList.add('hidden');
-
-  // 사이드바 활성 표시
-  document.querySelectorAll('.nav-item').forEach(el => {
-    el.classList.toggle('active', el.dataset.id === id);
-  });
-
-  // 모든 iframe 비활성화
-  document.querySelectorAll('.app-frame').forEach(f => f.classList.remove('active'));
-
-  // 해당 iframe 처리
-  let frame = document.getElementById('frame-' + id);
-  if (!frame) {
-    // 최초 로드: iframe 생성
-    showLoader();
-    frame = document.createElement('iframe');
-    frame.id = 'frame-' + id;
-    frame.className = 'app-frame';
-    frame.src = app.url;
-    frame.referrerPolicy = 'no-referrer-when-downgrade';
-    frame.allow = 'clipboard-read; clipboard-write; geolocation; camera; microphone';
-    frame.onload = () => {
-      hideLoader();
-      frame.classList.add('active');
-      loadedApps.add(id);
-      // 첫 로드 완료 후 데스크탑 모드 재적용 (정확한 컨테이너 폭 확보)
-      setTimeout(() => applyDesktopMode(), 100);
-    };
-    frame.onerror = () => {
-      hideLoader();
-      showToast('앱 로딩 실패: ' + app.name);
-    };
-    document.getElementById('frameContainer').appendChild(frame);
-  } else {
-    // 이미 로드됨: 그냥 활성화
-    frame.classList.add('active');
-  }
-
-  currentAppId = id;
-  localStorage.setItem(LAST_APP_KEY, id);
-  document.getElementById('topbarCurrent').textContent = app.name;
-  document.getElementById('footerActive').textContent = app.name;
-  document.title = `${app.name} · Workspace`;
-
-  // 모바일에서는 사이드바 자동 닫기
-  if (window.innerWidth <= 768) {
-    closeMobileSidebar();
-  }
-
-  // 데스크탑 모드 강제 재적용 — 활성 iframe 전환 후 반드시 호출
-  // (이미 로드된 캐시 iframe도 transform이 재계산되도록)
-  setTimeout(() => applyDesktopMode(), 50);
+function trackOpen(id) {
+  localStorage.setItem('workspace_last_app', id);
 }
 
-function goHome() {
-  document.getElementById('welcome').classList.remove('hidden');
-  document.querySelectorAll('.app-frame').forEach(f => f.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  currentAppId = null;
-  document.getElementById('topbarCurrent').textContent = 'Home';
-  document.getElementById('footerActive').textContent = 'Home';
-  document.title = 'Workspace · 통합 대시보드';
-  localStorage.removeItem(LAST_APP_KEY);
+function updateClock() {
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mm = String(now.getMinutes()).padStart(2,'0');
+  const ss = String(now.getSeconds()).padStart(2,'0');
+
+  document.getElementById('clock').textContent = `${hh}:${mm}:${ss}`;
+  document.getElementById('bigTime').textContent = `${hh}:${mm}`;
+
+  const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+  const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  const dateStr = `${months[now.getMonth()]} ${String(now.getDate()).padStart(2,'0')}`;
+  const fullDate = `${dateStr} · ${now.getFullYear()} · ${days[now.getDay()]}`;
+  document.getElementById('date').textContent = dateStr;
+  document.getElementById('bigDate').textContent = fullDate;
+
+  const hour = now.getHours();
+  let greeting = '오늘도 좋은 하루 되세요';
+  if (hour < 6) greeting = '늦은 시간까지 수고하십니다';
+  else if (hour < 12) greeting = '좋은 아침입니다';
+  else if (hour < 14) greeting = '점심은 드셨나요?';
+  else if (hour < 18) greeting = '오후도 화이팅입니다';
+  else if (hour < 22) greeting = '오늘도 수고하셨습니다';
+  else greeting = '편안한 밤 되세요';
+  document.getElementById('greetingSub').textContent = greeting;
 }
 
-function reloadCurrent() {
-  if (!currentAppId) {
-    showToast('현재 활성 앱이 없습니다');
-    return;
-  }
-  const frame = document.getElementById('frame-' + currentAppId);
-  if (frame) {
-    const app = APPS.find(a => a.id === currentAppId);
-    showLoader();
-    frame.src = app.url;
-    frame.onload = () => {
-      hideLoader();
-      showToast('새로고침 완료');
-    };
-  }
-}
-
-function openCurrentInNewTab() {
-  if (!currentAppId) {
-    showToast('현재 활성 앱이 없습니다');
-    return;
-  }
-  const app = APPS.find(a => a.id === currentAppId);
-  window.open(app.url, '_blank');
-}
-
-/* ===== 데스크탑 보기 모드 (모바일에서 데스크탑 너비 강제) ===== */
-const DESKTOP_MODE_KEY = 'workspace_desktop_mode';
-const DESKTOP_WIDTH = 1280; // 가상 데스크탑 너비
-
-function isDesktopModeOn() {
-  return localStorage.getItem(DESKTOP_MODE_KEY) === '1';
-}
-
-function applyDesktopMode() {
-  const container = document.getElementById('frameContainer');
-  const btn = document.getElementById('desktopModeBtn');
-  if (!container || !btn) return;
-
-  const on = isDesktopModeOn() && window.innerWidth <= 768;
-  container.classList.toggle('desktop-mode', on);
-  btn.classList.toggle('active', isDesktopModeOn());
-  btn.title = isDesktopModeOn() ? '데스크탑 보기 (켜짐) - 탭하여 끄기' : '데스크탑 보기 (꺼짐) - 탭하여 켜기';
-
-  if (on) {
-    updateFrameScale();
-    // 컨테이너 스크롤 위치 초기화 (이전 앱 스크롤 잔재 제거)
-    container.scrollTo(0, 0);
-  } else {
-    // 모드 끄면 scale 제거
-    document.documentElement.style.removeProperty('--frame-scale');
-  }
-}
-
-function updateFrameScale() {
-  // requestAnimationFrame으로 정확한 컨테이너 폭 확보 후 계산
-  requestAnimationFrame(() => {
-    const container = document.getElementById('frameContainer');
-    if (!container) return;
-    const containerWidth = container.clientWidth;
-    if (containerWidth === 0) return; // 아직 그려지지 않음
-    const scale = Math.min(1, containerWidth / DESKTOP_WIDTH);
-    document.documentElement.style.setProperty('--frame-scale', scale);
-
-    // 활성 iframe에 강제 reflow를 트리거하여 transform 재계산 보장
-    const activeFrame = document.querySelector('.app-frame.active');
-    if (activeFrame) {
-      // 잠시 transform을 제거했다가 다음 프레임에 다시 적용 → 브라우저가 재렌더링
-      activeFrame.style.transform = 'none';
-      // eslint-disable-next-line no-unused-expressions
-      activeFrame.offsetHeight; // 강제 reflow
-      activeFrame.style.transform = '';
-    }
-  });
-}
-
-function toggleDesktopMode() {
-  if (window.innerWidth > 768) {
-    showToast('데스크탑에서는 이미 데스크탑 보기입니다');
-    return;
-  }
-  const newState = !isDesktopModeOn();
-  localStorage.setItem(DESKTOP_MODE_KEY, newState ? '1' : '0');
-  applyDesktopMode();
-  showToast(newState ? '데스크탑 보기 켜짐 — 핀치 줌으로 부분 확대 가능' : '모바일 보기 켜짐');
-}
-
-/* ===== 사이드바 토글 ===== */
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const backdrop = document.getElementById('sidebarBackdrop');
-  if (window.innerWidth <= 768) {
-    const isOpen = sidebar.classList.toggle('mobile-open');
-    backdrop.classList.toggle('show', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  } else {
-    sidebar.classList.toggle('collapsed');
-    localStorage.setItem('workspace_sidebar_collapsed', sidebar.classList.contains('collapsed') ? '1' : '0');
-  }
-}
-
-function closeMobileSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const backdrop = document.getElementById('sidebarBackdrop');
-  sidebar.classList.remove('mobile-open');
-  backdrop.classList.remove('show');
-  document.body.style.overflow = '';
-}
-
-/* ===== PWA 설치 ===== */
 let deferredInstallPrompt = null;
-
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredInstallPrompt = e;
   showInstallBanner();
 });
 
-window.addEventListener('appinstalled', () => {
-  hideInstallBanner();
-  deferredInstallPrompt = null;
-  showToast('홈 화면에 설치되었습니다');
-});
-
 function isStandalone() {
-  return window.matchMedia('(display-mode: standalone)').matches ||
-         window.navigator.standalone === true;
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 }
-
-function isIOS() {
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-}
-function isAndroid() {
-  return /Android/.test(navigator.userAgent);
-}
+function isIOS() { return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream; }
+function isAndroid() { return /Android/.test(navigator.userAgent); }
 
 function showInstallBanner() {
+  if (isStandalone()) return;
   const banner = document.getElementById('installBanner');
   const hint = document.getElementById('installHint');
   const btn = document.getElementById('installBtn');
   if (!banner) return;
-  if (isStandalone()) { banner.style.display = 'none'; return; }
-
-  banner.style.display = 'block';
+  banner.classList.add('show');
 
   if (deferredInstallPrompt) {
-    // Chrome/Edge/안드로이드 - 자동 설치 가능
     btn.style.display = 'inline-flex';
-    hint.innerHTML = '한 번의 탭으로 홈 화면에 추가됩니다';
+    hint.innerHTML = '📱 한 번의 탭으로 홈 화면에 추가';
   } else if (isIOS()) {
-    // iOS Safari - 수동 안내만 가능
     btn.style.display = 'none';
-    hint.innerHTML = `📱 <strong>iPhone/iPad 설치 방법</strong><br>
-      Safari 하단의 <code>공유 ⬆️</code> 버튼 → <code>홈 화면에 추가</code> 선택`;
+    hint.innerHTML = `<strong>📱 iPhone 설치</strong><br>Safari 하단 <code>공유 ⬆️</code> → <code>홈 화면에 추가</code>`;
   } else if (isAndroid()) {
-    // 안드로이드인데 prompt 못받은 경우
     btn.style.display = 'none';
-    hint.innerHTML = `📱 <strong>Android 설치 방법</strong><br>
-      Chrome 우상단 <code>⋮</code> 메뉴 → <code>앱 설치</code> 또는 <code>홈 화면에 추가</code>`;
+    hint.innerHTML = `<strong>📱 Android 설치</strong><br>Chrome <code>⋮</code> → <code>앱 설치</code>`;
   } else {
-    // 데스크탑 안내
     btn.style.display = 'none';
-    hint.innerHTML = `💻 <strong>데스크탑 설치 방법</strong><br>
-      Chrome/Edge 주소창 우측 <code>설치 아이콘</code> 클릭`;
+    hint.innerHTML = `💻 주소창 우측 <code>설치</code> 아이콘으로 설치 가능`;
   }
-}
-
-function hideInstallBanner() {
-  const banner = document.getElementById('installBanner');
-  if (banner) banner.style.display = 'none';
 }
 
 async function installPWA() {
-  if (!deferredInstallPrompt) {
-    showToast('설치 기능을 사용할 수 없습니다');
-    return;
-  }
+  if (!deferredInstallPrompt) return;
   deferredInstallPrompt.prompt();
-  const { outcome } = await deferredInstallPrompt.userChoice;
-  if (outcome === 'accepted') {
-    showToast('설치 중...');
-  }
+  await deferredInstallPrompt.userChoice;
   deferredInstallPrompt = null;
+  document.getElementById('installBanner').classList.remove('show');
 }
 
-// 페이지 로드 시 설치 안내 표시 (Chrome이 prompt를 안 줘도)
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    if (!isStandalone() && !deferredInstallPrompt) {
-      showInstallBanner();
-    }
-  }, 1500);
-});
-
-/* ===== 로더 ===== */
-function showLoader() { document.getElementById('loader').classList.add('show'); }
-function hideLoader() { document.getElementById('loader').classList.remove('show'); }
-
-/* ===== 토스트 ===== */
-let toastTimer;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
-}
-
-/* ===== 시계 ===== */
-function updateClock() {
-  const now = new Date();
-  const hh = String(now.getHours()).padStart(2, '0');
-  const mm = String(now.getMinutes()).padStart(2, '0');
-  const ss = String(now.getSeconds()).padStart(2, '0');
-  document.getElementById('topClock').textContent = `${hh}:${mm}:${ss}`;
-  document.getElementById('footerTime').textContent = `${hh}:${mm}`;
-  document.getElementById('welcomeTime').textContent = `${hh}:${mm}`;
-
-  const days = ['일','월','화','수','목','금','토'];
-  const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-  const dateStr = `${months[now.getMonth()]} ${String(now.getDate()).padStart(2,'0')}  ·  ${now.getFullYear()}  ·  ${days[now.getDay()]}요일`;
-  document.getElementById('welcomeDate').textContent = dateStr;
-}
-
-/* ===== 키보드 단축키 ===== */
-document.addEventListener('keydown', (e) => {
-  // Alt + 1~4: 앱 전환
-  if (e.altKey && !e.ctrlKey && !e.metaKey) {
-    const num = parseInt(e.key);
-    if (num >= 1 && num <= APPS.length) {
-      e.preventDefault();
-      openApp(APPS[num-1].id);
-    }
-  }
-  // Alt + H: 홈
-  if (e.altKey && (e.key === 'h' || e.key === 'H')) {
-    e.preventDefault();
-    goHome();
-  }
-  // Alt + R: 현재 앱 새로고침
-  if (e.altKey && (e.key === 'r' || e.key === 'R')) {
-    e.preventDefault();
-    reloadCurrent();
-  }
-  // Alt + B: 사이드바 토글
-  if (e.altKey && (e.key === 'b' || e.key === 'B')) {
-    e.preventDefault();
-    toggleSidebar();
-  }
-});
-
-/* ===== 초기화 ===== */
-renderNav();
-renderWelcomeGrid();
+renderApps();
 updateClock();
 setInterval(updateClock, 1000);
 
-// 사이드바 접힘 상태 복원
-if (localStorage.getItem('workspace_sidebar_collapsed') === '1' && window.innerWidth > 768) {
-  document.getElementById('sidebar').classList.add('collapsed');
-}
-
-// 마지막 사용 앱 자동 복원 (선택사항 — 1초 후)
-const lastApp = localStorage.getItem(LAST_APP_KEY);
-if (lastApp && APPS.find(a => a.id === lastApp)) {
-  setTimeout(() => {
-    if (!currentAppId) openApp(lastApp);
-  }, 500);
-}
-
-// 화면 회전/리사이즈 시 사이드바 상태 정리 + 스케일 재계산
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 768) {
-    closeMobileSidebar();
-  }
-  applyDesktopMode();
-});
-
-// 화면 회전 (모바일)
-window.addEventListener('orientationchange', () => {
-  setTimeout(applyDesktopMode, 200);
-});
-
-// 초기 데스크탑 모드 적용
-applyDesktopMode();
-
-// 모바일에서 풀스크린(PWA) 상태에서 새로고침 시 상단바 자동 보정
-if (isStandalone()) {
-  document.documentElement.classList.add('pwa-standalone');
-}
+setTimeout(() => {
+  if (!isStandalone() && !deferredInstallPrompt) showInstallBanner();
+}, 1500);
 </script>
 
 </body>

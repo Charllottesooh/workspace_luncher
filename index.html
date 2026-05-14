@@ -467,14 +467,24 @@
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
+  /* 비활성 iframe은 데스크탑 모드에서도 완전히 숨김 (공간 차지 방지) */
   .frame-container.desktop-mode .app-frame {
+    display: none;
+  }
+  .frame-container.desktop-mode .app-frame.active {
+    display: block;
     position: relative;
     width: 1280px;
-    height: calc(100vh / var(--frame-scale, 1));
     height: calc(100dvh / var(--frame-scale, 1));
     transform-origin: top left;
     transform: scale(var(--frame-scale, 1));
     inset: auto;
+  }
+  /* 폴백: dvh 미지원 브라우저 */
+  @supports not (height: 100dvh) {
+    .frame-container.desktop-mode .app-frame.active {
+      height: calc(100vh / var(--frame-scale, 1));
+    }
   }
   /* 데스크탑 모드 활성화 시 토글 버튼 강조 */
   .desktop-mode-btn.active {
@@ -980,6 +990,8 @@ function openApp(id) {
       hideLoader();
       frame.classList.add('active');
       loadedApps.add(id);
+      // 첫 로드 완료 후 데스크탑 모드 재적용 (정확한 컨테이너 폭 확보)
+      setTimeout(() => applyDesktopMode(), 100);
     };
     frame.onerror = () => {
       hideLoader();
@@ -1002,8 +1014,9 @@ function openApp(id) {
     closeMobileSidebar();
   }
 
-  // 데스크탑 모드 재적용 (스케일 계산)
-  applyDesktopMode();
+  // 데스크탑 모드 강제 재적용 — 활성 iframe 전환 후 반드시 호출
+  // (이미 로드된 캐시 iframe도 transform이 재계산되도록)
+  setTimeout(() => applyDesktopMode(), 50);
 }
 
 function goHome() {
@@ -1063,6 +1076,8 @@ function applyDesktopMode() {
 
   if (on) {
     updateFrameScale();
+    // 컨테이너 스크롤 위치 초기화 (이전 앱 스크롤 잔재 제거)
+    container.scrollTo(0, 0);
   } else {
     // 모드 끄면 scale 제거
     document.documentElement.style.removeProperty('--frame-scale');
@@ -1070,10 +1085,25 @@ function applyDesktopMode() {
 }
 
 function updateFrameScale() {
-  // 현재 화면 너비 / 1280 = 축소 비율
-  const containerWidth = document.getElementById('frameContainer').clientWidth;
-  const scale = Math.min(1, containerWidth / DESKTOP_WIDTH);
-  document.documentElement.style.setProperty('--frame-scale', scale);
+  // requestAnimationFrame으로 정확한 컨테이너 폭 확보 후 계산
+  requestAnimationFrame(() => {
+    const container = document.getElementById('frameContainer');
+    if (!container) return;
+    const containerWidth = container.clientWidth;
+    if (containerWidth === 0) return; // 아직 그려지지 않음
+    const scale = Math.min(1, containerWidth / DESKTOP_WIDTH);
+    document.documentElement.style.setProperty('--frame-scale', scale);
+
+    // 활성 iframe에 강제 reflow를 트리거하여 transform 재계산 보장
+    const activeFrame = document.querySelector('.app-frame.active');
+    if (activeFrame) {
+      // 잠시 transform을 제거했다가 다음 프레임에 다시 적용 → 브라우저가 재렌더링
+      activeFrame.style.transform = 'none';
+      // eslint-disable-next-line no-unused-expressions
+      activeFrame.offsetHeight; // 강제 reflow
+      activeFrame.style.transform = '';
+    }
+  });
 }
 
 function toggleDesktopMode() {

@@ -5,8 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Workspace · 통합 대시보드</title>
-
-<!-- PWA -->
 <meta name="theme-color" content="#0a0d12">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -14,387 +12,71 @@
 <meta name="apple-mobile-web-app-title" content="Workspace">
 <meta name="application-name" content="Workspace">
 <meta name="format-detection" content="telephone=no">
-
-<!-- 파비콘 -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237c8cff'/%3E%3Cstop offset='50%25' stop-color='%23b67cff'/%3E%3Cstop offset='100%25' stop-color='%23ff7cae'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='7' fill='%230a0d12'/%3E%3Crect x='6' y='6' width='8.5' height='8.5' rx='2' fill='url(%23g)'/%3E%3Crect x='17.5' y='6' width='8.5' height='8.5' rx='2' fill='url(%23g)' opacity='0.75'/%3E%3Crect x='6' y='17.5' width='8.5' height='8.5' rx='2' fill='url(%23g)' opacity='0.55'/%3E%3Crect x='17.5' y='17.5' width='8.5' height='8.5' rx='2' fill='url(%23g)'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237c8cff'/%3E%3Cstop offset='50%25' stop-color='%23b67cff'/%3E%3Cstop offset='100%25' stop-color='%23ff7cae'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='%230a0d12'/%3E%3Crect x='34' y='34' width='48' height='48' rx='11' fill='url(%23g)'/%3E%3Crect x='98' y='34' width='48' height='48' rx='11' fill='url(%23g)' opacity='0.75'/%3E%3Crect x='34' y='98' width='48' height='48' rx='11' fill='url(%23g)' opacity='0.55'/%3E%3Crect x='98' y='98' width='48' height='48' rx='11' fill='url(%23g)'/%3E%3C/svg%3E">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   :root {
-    --bg-base: #0a0d12;
-    --bg-deep: #060810;
-    --bg-elev: rgba(22, 27, 38, 0.55);
-    --bg-elev-strong: rgba(28, 34, 48, 0.85);
-    --border: rgba(255, 255, 255, 0.06);
-    --border-strong: rgba(255, 255, 255, 0.12);
-    --text-primary: #f0f3f9;
-    --text-secondary: #8a93a6;
-    --text-muted: #555c6e;
-    --accent: #7c8cff;
-    --accent-glow: rgba(124, 140, 255, 0.35);
-    --accent-soft: rgba(124, 140, 255, 0.12);
+    --bg-base: #0a0d12; --bg-deep: #060810;
+    --bg-elev: rgba(22, 27, 38, 0.55); --bg-elev-strong: rgba(28, 34, 48, 0.85);
+    --border: rgba(255, 255, 255, 0.06); --border-strong: rgba(255, 255, 255, 0.12);
+    --text-primary: #f0f3f9; --text-secondary: #8a93a6; --text-muted: #555c6e;
+    --accent: #7c8cff; --accent-glow: rgba(124, 140, 255, 0.35); --accent-soft: rgba(124, 140, 255, 0.12);
     --gradient: linear-gradient(135deg, #7c8cff 0%, #b67cff 50%, #ff7cae 100%);
   }
-
-  html, body {
-    height: 100%;
-    height: -webkit-fill-available;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-  }
-  body {
-    font-family: 'Inter', -apple-system, 'Pretendard', sans-serif;
-    background: var(--bg-base);
-    color: var(--text-primary);
-    -webkit-font-smoothing: antialiased;
-    font-size: 14px;
-    min-height: 100vh;
-    min-height: 100dvh;
-    overflow-x: hidden;
-    position: relative;
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-
-  body::before, body::after {
-    content: '';
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.18;
-    pointer-events: none;
-    z-index: 0;
-  }
-  body::before {
-    top: -200px; left: -200px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, #7c8cff 0%, transparent 70%);
-  }
-  body::after {
-    bottom: -200px; right: -200px;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, #ff7cae 0%, transparent 70%);
-  }
-
-  .container {
-    position: relative;
-    z-index: 1;
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 40px 24px 60px;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 32px;
-  }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .brand-logo {
-    width: 42px;
-    height: 42px;
-    border-radius: 11px;
-    background: var(--gradient);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 30px var(--accent-glow);
-    position: relative;
-    overflow: hidden;
-  }
-  .brand-logo::before {
-    content: '';
-    position: absolute;
-    inset: 1px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%);
-  }
-  .brand-logo svg {
-    position: relative;
-    z-index: 1;
-    width: 20px;
-    height: 20px;
-    color: #fff;
-  }
-  .brand-text h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    line-height: 1;
-  }
-  .brand-text p {
-    font-size: 10px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 5px;
-    font-weight: 500;
-  }
-  .header-status {
-    text-align: right;
-  }
-  .header-status .clock {
-    font-family: 'SF Mono', Menlo, monospace;
-    font-size: 13px;
-    color: var(--text-secondary);
-  }
-  .header-status .date {
-    font-size: 10px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-top: 3px;
-  }
-
-  .time-display {
-    text-align: center;
-    margin: 24px 0 48px;
-  }
-  .time-display .big-time {
-    font-family: 'Playfair Display', serif;
-    font-size: 80px;
-    font-weight: 600;
-    letter-spacing: -3px;
-    line-height: 1;
-    background: linear-gradient(180deg, #fff 0%, #8a93a6 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .time-display .big-date {
-    font-size: 12px;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    margin-top: 12px;
-    font-weight: 500;
-  }
-  .greeting {
-    text-align: center;
-    margin-bottom: 36px;
-  }
-  .greeting-text {
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: -0.2px;
-  }
-  .greeting-text strong {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 700;
-  }
-  .greeting-sub {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 6px;
-    letter-spacing: 0.5px;
-  }
-
-  .section-label {
-    font-size: 10px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    font-weight: 600;
-    margin-bottom: 14px;
-    padding-left: 4px;
-  }
-  .app-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    margin-bottom: 36px;
-  }
-  .app-card {
-    background: var(--bg-elev);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 22px 20px;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.32, 0.72, 0, 1);
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    min-height: 130px;
-  }
-  .app-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.04) 100%);
-    pointer-events: none;
-  }
-  .app-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-    transition: left 0.6s ease;
-    pointer-events: none;
-  }
-  .app-card:active {
-    transform: scale(0.97);
-    border-color: rgba(124,140,255,0.4);
-  }
-  .app-card:hover {
-    border-color: rgba(124,140,255,0.25);
-    background: rgba(28, 34, 48, 0.75);
-    transform: translateY(-2px);
-  }
+  html, body { height: 100%; height: -webkit-fill-available; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Inter', -apple-system, 'Pretendard', sans-serif; background: var(--bg-base); color: var(--text-primary); -webkit-font-smoothing: antialiased; font-size: 14px; min-height: 100vh; min-height: 100dvh; overflow-x: hidden; position: relative; padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+  body::before, body::after { content: ''; position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.18; pointer-events: none; z-index: 0; }
+  body::before { top: -200px; left: -200px; width: 600px; height: 600px; background: radial-gradient(circle, #7c8cff 0%, transparent 70%); }
+  body::after { bottom: -200px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, #ff7cae 0%, transparent 70%); }
+  .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 40px 24px 60px; min-height: 100dvh; display: flex; flex-direction: column; }
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand-logo { width: 42px; height: 42px; border-radius: 11px; background: var(--gradient); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px var(--accent-glow); position: relative; overflow: hidden; }
+  .brand-logo::before { content: ''; position: absolute; inset: 1px; border-radius: 10px; background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%); }
+  .brand-logo svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+  .brand-text h1 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; letter-spacing: -0.3px; line-height: 1; }
+  .brand-text p { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; font-weight: 500; }
+  .header-status { text-align: right; }
+  .header-status .clock { font-family: 'SF Mono', Menlo, monospace; font-size: 13px; color: var(--text-secondary); }
+  .header-status .date { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 3px; }
+  .time-display { text-align: center; margin: 24px 0 48px; }
+  .time-display .big-time { font-family: 'Playfair Display', serif; font-size: 80px; font-weight: 600; letter-spacing: -3px; line-height: 1; background: linear-gradient(180deg, #fff 0%, #8a93a6 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .time-display .big-date { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 4px; margin-top: 12px; font-weight: 500; }
+  .greeting { text-align: center; margin-bottom: 36px; }
+  .greeting-text { font-size: 18px; font-weight: 300; letter-spacing: -0.2px; }
+  .greeting-text strong { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+  .greeting-sub { font-size: 12px; color: var(--text-muted); margin-top: 6px; letter-spacing: 0.5px; }
+  .section-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2.5px; font-weight: 600; margin-bottom: 14px; padding-left: 4px; }
+  .app-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 36px; }
+  .app-card { background: var(--bg-elev); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border: 1px solid var(--border); border-radius: 16px; padding: 22px 20px; cursor: pointer; transition: all 0.25s cubic-bezier(0.32, 0.72, 0, 1); position: relative; overflow: hidden; text-decoration: none; color: inherit; display: block; min-height: 130px; }
+  .app-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.04) 100%); pointer-events: none; }
+  .app-card::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent); transition: left 0.6s ease; pointer-events: none; }
+  .app-card:active { transform: scale(0.97); border-color: rgba(124,140,255,0.4); }
+  .app-card:hover { border-color: rgba(124,140,255,0.25); background: rgba(28, 34, 48, 0.75); transform: translateY(-2px); }
   .app-card:hover::after { left: 100%; }
-  .app-card-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: var(--accent-soft);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-bottom: 14px;
-    position: relative;
-    z-index: 1;
-  }
-  .app-card-title {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    letter-spacing: -0.2px;
-    position: relative;
-    z-index: 1;
-  }
-  .app-card-sub {
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 0.2px;
-    position: relative;
-    z-index: 1;
-  }
-  .app-card-arrow {
-    position: absolute;
-    top: 22px;
-    right: 20px;
-    color: var(--text-muted);
-    opacity: 0;
-    transition: all 0.25s ease;
-    z-index: 1;
-  }
-  .app-card:hover .app-card-arrow {
-    opacity: 1;
-    color: var(--accent);
-    transform: translateX(2px);
-  }
+  .app-card-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; position: relative; z-index: 1; }
+  .app-card-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; letter-spacing: -0.2px; position: relative; z-index: 1; }
+  .app-card-sub { font-size: 11px; color: var(--text-muted); letter-spacing: 0.2px; position: relative; z-index: 1; }
+  .app-card-arrow { position: absolute; top: 22px; right: 20px; color: var(--text-muted); opacity: 0; transition: all 0.25s ease; z-index: 1; }
+  .app-card:hover .app-card-arrow { opacity: 1; color: var(--accent); transform: translateX(2px); }
   .app-card-arrow svg { width: 16px; height: 16px; }
-
-  .footer {
-    margin-top: auto;
-    padding-top: 32px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 11px;
-    color: var(--text-muted);
-  }
+  .footer { margin-top: auto; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--text-muted); }
   .footer-actions { display: flex; gap: 8px; }
-  .footer-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 11px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .footer-btn:hover {
-    color: var(--text-primary);
-    background: rgba(255,255,255,0.03);
-    border-color: var(--border-strong);
-  }
+  .footer-btn { background: transparent; border: 1px solid var(--border); color: var(--text-secondary); padding: 8px 14px; border-radius: 8px; font-size: 11px; cursor: pointer; font-family: inherit; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px; }
+  .footer-btn:hover { color: var(--text-primary); background: rgba(255,255,255,0.03); border-color: var(--border-strong); }
   .footer-btn svg { width: 12px; height: 12px; }
-  .live-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #00d97e;
-    display: inline-block;
-    margin-right: 6px;
-    box-shadow: 0 0 8px #00d97e;
-    animation: live-pulse 2s infinite;
-  }
-  @keyframes live-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  .install-banner {
-    background: var(--bg-elev);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 18px;
-    margin-bottom: 28px;
-    display: none;
-    text-align: center;
-  }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #00d97e; display: inline-block; margin-right: 6px; box-shadow: 0 0 8px #00d97e; animation: live-pulse 2s infinite; }
+  @keyframes live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .install-banner { background: var(--bg-elev); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin-bottom: 28px; display: none; text-align: center; }
   .install-banner.show { display: block; }
-  .install-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    border-radius: 24px;
-    background: var(--gradient);
-    border: none;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: inherit;
-    box-shadow: 0 6px 20px var(--accent-glow);
-    margin-top: 10px;
-  }
+  .install-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 24px; background: var(--gradient); border: none; color: #fff; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; box-shadow: 0 6px 20px var(--accent-glow); margin-top: 10px; }
   .install-btn svg { width: 12px; height: 12px; }
-  .install-hint {
-    font-size: 11px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-  .install-hint code {
-    background: var(--bg-elev-strong);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: 'SF Mono', Menlo, monospace;
-    color: var(--text-primary);
-    font-size: 10px;
-  }
-
+  .install-hint { font-size: 11px; color: var(--text-secondary); line-height: 1.6; }
+  .install-hint code { background: var(--bg-elev-strong); padding: 2px 6px; border-radius: 4px; font-family: 'SF Mono', Menlo, monospace; color: var(--text-primary); font-size: 10px; }
   @media (max-width: 640px) {
     .container { padding: 28px 18px 36px; }
     .header { margin-bottom: 24px; }
@@ -417,47 +99,34 @@
     .footer { flex-direction: column; gap: 14px; padding-top: 24px; }
     .footer-actions { width: 100%; justify-content: center; }
   }
-
-  @media (max-width: 380px) {
-    .app-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 380px) { .app-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-
 <div class="container">
-
   <header class="header">
     <div class="brand">
       <div class="brand-logo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="7" height="7"/>
-          <rect x="14" y="3" width="7" height="7"/>
-          <rect x="3" y="14" width="7" height="7"/>
-          <rect x="14" y="14" width="7" height="7"/>
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
         </svg>
       </div>
-      <div class="brand-text">
-        <h1>Workspace</h1>
-        <p>Unified Console</p>
-      </div>
+      <div class="brand-text"><h1>Workspace</h1><p>Unified Console</p></div>
     </div>
     <div class="header-status">
       <div class="clock" id="clock">--:--</div>
       <div class="date" id="date">—</div>
     </div>
   </header>
-
   <div class="time-display">
     <div class="big-time" id="bigTime">00:00</div>
     <div class="big-date" id="bigDate">—</div>
   </div>
-
   <div class="greeting">
     <div class="greeting-text">Welcome back, <strong>Charllott</strong></div>
     <div class="greeting-sub" id="greetingSub">오늘도 좋은 하루 되세요</div>
   </div>
-
   <div class="install-banner" id="installBanner">
     <div class="install-hint" id="installHint"></div>
     <button class="install-btn" id="installBtn" onclick="installPWA()" style="display:none;">
@@ -465,10 +134,8 @@
       홈 화면에 앱으로 설치
     </button>
   </div>
-
   <div class="section-label">Applications</div>
   <div class="app-grid" id="appGrid"></div>
-
   <footer class="footer">
     <div><span class="live-dot"></span>Online · Workspace v2</div>
     <div class="footer-actions">
@@ -479,13 +146,13 @@
     </div>
   </footer>
 </div>
-
 <script>
 const APPS = [
-  { id: 'daily-report', name: '일일보고', sub: '시재 관리', icon: '📊', url: 'https://charllottesooh.github.io/Daily-account-report/' },
-  { id: 'purchase', name: '일일결제', sub: '매입 현황', icon: '💳', url: 'https://charllottesooh.github.io/my-erp/' },
-  { id: 'franchise', name: '가맹점 변동', sub: '신규 · 명변 · 폐점', icon: '🏪', url: 'https://charllottesooh.github.io/franchise-manager/' },
-  { id: 'production', name: '제품생산 ERP', sub: '원재료 · 생산 · 출하', icon: '🏭', url: 'https://charllottesooh.github.io/production_erp/' }
+  { id: 'accounting',   name: '매출및시재관리', sub: '매출 · 입출금 · 리포트',   icon: '📊', url: 'https://charllottesooh.github.io/accounting/' },
+  { id: 'purchase',     name: '매입관리',       sub: '일일 결제 현황',            icon: '💳', url: 'https://charllottesooh.github.io/my-erp/' },
+  { id: 'franchise',    name: '가맹점 변동',    sub: '신규 · 명변 · 폐점',        icon: '🏪', url: 'https://charllottesooh.github.io/franchise-manager/' },
+  { id: 'production',   name: '제품생산 ERP',   sub: '원재료 · 생산 · 출하',      icon: '🏭', url: 'https://charllottesooh.github.io/production_erp/' },
+  { id: 'daily-report', name: '구.시재보고',    sub: '기존 일일보고',             icon: '📁', url: 'https://charllottesooh.github.io/Daily-account-report/' },
 ];
 
 function renderApps() {
@@ -502,26 +169,20 @@ function renderApps() {
   `).join('');
 }
 
-function trackOpen(id) {
-  localStorage.setItem('workspace_last_app', id);
-}
+function trackOpen(id) { localStorage.setItem('workspace_last_app', id); }
 
 function updateClock() {
   const now = new Date();
   const hh = String(now.getHours()).padStart(2,'0');
   const mm = String(now.getMinutes()).padStart(2,'0');
   const ss = String(now.getSeconds()).padStart(2,'0');
-
   document.getElementById('clock').textContent = `${hh}:${mm}:${ss}`;
   document.getElementById('bigTime').textContent = `${hh}:${mm}`;
-
   const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
   const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
   const dateStr = `${months[now.getMonth()]} ${String(now.getDate()).padStart(2,'0')}`;
-  const fullDate = `${dateStr} · ${now.getFullYear()} · ${days[now.getDay()]}`;
   document.getElementById('date').textContent = dateStr;
-  document.getElementById('bigDate').textContent = fullDate;
-
+  document.getElementById('bigDate').textContent = `${dateStr} · ${now.getFullYear()} · ${days[now.getDay()]}`;
   const hour = now.getHours();
   let greeting = '오늘도 좋은 하루 되세요';
   if (hour < 6) greeting = '늦은 시간까지 수고하십니다';
@@ -534,18 +195,10 @@ function updateClock() {
 }
 
 let deferredInstallPrompt = null;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredInstallPrompt = e;
-  showInstallBanner();
-});
-
-function isStandalone() {
-  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-}
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredInstallPrompt = e; showInstallBanner(); });
+function isStandalone() { return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true; }
 function isIOS() { return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream; }
 function isAndroid() { return /Android/.test(navigator.userAgent); }
-
 function showInstallBanner() {
   if (isStandalone()) return;
   const banner = document.getElementById('installBanner');
@@ -553,22 +206,11 @@ function showInstallBanner() {
   const btn = document.getElementById('installBtn');
   if (!banner) return;
   banner.classList.add('show');
-
-  if (deferredInstallPrompt) {
-    btn.style.display = 'inline-flex';
-    hint.innerHTML = '📱 한 번의 탭으로 홈 화면에 추가';
-  } else if (isIOS()) {
-    btn.style.display = 'none';
-    hint.innerHTML = `<strong>📱 iPhone 설치</strong><br>Safari 하단 <code>공유 ⬆️</code> → <code>홈 화면에 추가</code>`;
-  } else if (isAndroid()) {
-    btn.style.display = 'none';
-    hint.innerHTML = `<strong>📱 Android 설치</strong><br>Chrome <code>⋮</code> → <code>앱 설치</code>`;
-  } else {
-    btn.style.display = 'none';
-    hint.innerHTML = `💻 주소창 우측 <code>설치</code> 아이콘으로 설치 가능`;
-  }
+  if (deferredInstallPrompt) { btn.style.display = 'inline-flex'; hint.innerHTML = '📱 한 번의 탭으로 홈 화면에 추가'; }
+  else if (isIOS()) { btn.style.display = 'none'; hint.innerHTML = `<strong>📱 iPhone 설치</strong><br>Safari 하단 <code>공유 ⬆️</code> → <code>홈 화면에 추가</code>`; }
+  else if (isAndroid()) { btn.style.display = 'none'; hint.innerHTML = `<strong>📱 Android 설치</strong><br>Chrome <code>⋮</code> → <code>앱 설치</code>`; }
+  else { btn.style.display = 'none'; hint.innerHTML = `💻 주소창 우측 <code>설치</code> 아이콘으로 설치 가능`; }
 }
-
 async function installPWA() {
   if (!deferredInstallPrompt) return;
   deferredInstallPrompt.prompt();
@@ -576,15 +218,10 @@ async function installPWA() {
   deferredInstallPrompt = null;
   document.getElementById('installBanner').classList.remove('show');
 }
-
 renderApps();
 updateClock();
 setInterval(updateClock, 1000);
-
-setTimeout(() => {
-  if (!isStandalone() && !deferredInstallPrompt) showInstallBanner();
-}, 1500);
+setTimeout(() => { if (!isStandalone() && !deferredInstallPrompt) showInstallBanner(); }, 1500);
 </script>
-
 </body>
 </html>
